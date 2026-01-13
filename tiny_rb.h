@@ -23,26 +23,50 @@
 #include <string.h>
 
 /**
- * \brief   Declare a static FIFO ring buffer
+ * \brief   Declare a global ring buffer
  *
  * \param   [in] TYPE      Data type of the buffer elements
  * \param   [in] NAME      Name of the buffer (used in macro expansions)
  * \param   [in] CAPACITY  Maximum capacity of the buffer
  */
 #define TRB_RB_DEFINE(TYPE, NAME, CAPACITY)\
-static struct {\
-    TYPE   buf[CAPACITY];\
-    size_t capacity;\
-    size_t head;\
-    size_t tail;\
-    size_t count;\
-} _trb_##NAME##_buf = {\
-    .buf = {0},\
-    .capacity = CAPACITY,\
-    .head = 0,\
-    .tail = 0,\
-    .count = 0\
-}
+    struct {\
+        size_t capacity;\
+        size_t head;\
+        size_t tail;\
+        size_t count;\
+        TYPE   buf[CAPACITY];\
+    } _trb_##NAME##_buf = {\
+        .capacity = CAPACITY,\
+        .head = 0,\
+        .tail = 0,\
+        .count = 0\
+    }
+
+/**
+ * \brief   Declare a static ring buffer
+ *
+ * \param   [in] TYPE      Data type of the buffer elements
+ * \param   [in] NAME      Name of the buffer (used in macro expansions)
+ * \param   [in] CAPACITY  Maximum capacity of the buffer
+ */
+#define TRB_RB_DEFINE_STATIC(TYPE, NAME, CAPACITY)\
+    static TRB_RB_DEFINE(TYPE, NAME, CAPACITY)
+
+/**
+ * \brief   Import a global ring buffer
+ *
+ * \param   [in] TYPE      Data type of the buffer elements
+ * \param   [in] NAME      Name of the buffer (used in macro expansions)
+ */
+#define TRB_RB_IMPORT(TYPE, NAME)\
+    extern struct {\
+        size_t capacity;\
+        size_t head;\
+        size_t tail;\
+        size_t count;\
+        TYPE   buf[];\
+    } _trb_##NAME##_buf
 
 /**
  * \brief   Check if the buffer is empty
