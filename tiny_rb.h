@@ -102,11 +102,11 @@ static struct {\
  * \param   [in] NAME      Buffer name
  */
 #define trb_flush(NAME)\
-    {\
+    do {\
         _trb_##NAME##_buf.head = 0;\
         _trb_##NAME##_buf.tail = 0;\
         _trb_##NAME##_buf.count = 0;\
-    }
+    } while (0)
 
 /**
  * \brief   Push an element into the buffer
@@ -130,7 +130,7 @@ static struct {\
  * \param   [in] VALUE_PTR Pointer to the element to be pushed
  */
 #define trb_fifo_force_push(NAME, VALUE_PTR)\
-    {\
+    do {\
         memcpy(&_trb_##NAME##_buf.buf[_trb_##NAME##_buf.tail], VALUE_PTR, sizeof(_trb_##NAME##_buf.buf[0]));\
         _trb_##NAME##_buf.tail = (_trb_##NAME##_buf.tail + 1) % _trb_##NAME##_buf.capacity;\
         if (trb_is_full(NAME)) {\
@@ -138,7 +138,7 @@ static struct {\
         } else {\
             _trb_##NAME##_buf.count++;\
         }\
-    }
+    } while (0)
 
 /**
  * \brief   Pop an element from the buffer
