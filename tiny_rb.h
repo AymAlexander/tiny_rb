@@ -167,8 +167,8 @@
 /**
  * \brief   Pop an element from the buffer
  *
- * \param   [in] NAME      Buffer name
- * \param   [in] VALUE_PTR Pointer where the popped element will be stored
+ * \param   [in]  NAME      Buffer name
+ * \param   [out] VALUE_PTR Pointer where the popped element will be stored
  *
  * \return  - (0)  Success
  *          - (-1) Buffer empty
@@ -182,8 +182,8 @@
 /**
  * \brief   Peek at the front element without removing it
  *
- * \param   [in] NAME      Buffer name
- * \param   [in] VALUE_PTR Pointer where the element will be copied
+ * \param   [in]  NAME      Buffer name
+ * \param   [out] VALUE_PTR Pointer where the element will be copied
  *
  * \return  - (0)  Success
  *          - (-1) Buffer empty
@@ -211,8 +211,8 @@
 /**
  * \brief   Pop an element from the buffer
  *
- * \param   [in] NAME      Buffer name
- * \param   [in] VALUE_PTR Pointer where the popped element will be stored
+ * \param   [in]  NAME      Buffer name
+ * \param   [out] VALUE_PTR Pointer where the popped element will be stored
  *
  * \return  - (0)  Success
  *          - (-1) Buffer empty
@@ -226,8 +226,8 @@
 /**
  * \brief   Peek at the front element without removing it
  *
- * \param   [in] NAME      Buffer name
- * \param   [in] VALUE_PTR Pointer where the element will be copied
+ * \param   [in]  NAME      Buffer name
+ * \param   [out] VALUE_PTR Pointer where the element will be copied
  *
  * \return  - (0)  Success
  *          - (-1) Buffer empty
